@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
-        <ion-title>dashboard</ion-title>
+        <ion-title>Dashboard</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -11,5 +11,6 @@
         </ion-toolbar>
     </ion-header>
 
+    <ion-button [routerLink]="['/crud-item']" expand="block" color="dark">Crud Item</ion-button>
     <ion-button type="submit" (click)="authService.SignOut()" expand="block">Logout</ion-button>
 </ion-content>

@@ -19,12 +19,13 @@ export class LoginPage implements OnInit {
         this.authService
             .SignIn(email.value, password.value)
             .then((): any => {
-                if (this.authService.isEmailVerified) {
-                    this.router.navigate(['dashboard']);
-                } else {
-                    window.alert('Email is not verified');
-                    return false;
-                }
+
+                this.router.navigate(['dashboard']);
+                // if (this.authService.isEmailVerified) {
+                // } else {
+                //     window.alert('Email is not verified');
+                //     return false;
+                // }
             })
             .catch((error) => {
                 window.alert(error.message);

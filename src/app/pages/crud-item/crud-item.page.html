@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Crud Item</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div>
+        <ion-button class="m-3" color="dark" (click)="newItem()">New Item</ion-button>
+    </div>
+
+    <div *ngIf="enable">
+        <h3 class="text-center">Add Item</h3>
+
+        <ion-item>
+            <ion-buttons slot="end">
+                <ion-button (click)="enable = false">
+                    <ion-icon name="close-sharp" slot="icon-only"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+        </ion-item>
+
+        <ion-item lines="full">
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="text" [(ngModel)]="item.name"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Description</ion-label>
+            <ion-input type="text" [(ngModel)]="item.description"></ion-input>
+        </ion-item>
+        <ion-item class="mt-3">
+            <ion-label>Image: </ion-label>
+            <ion-buttons slot="end">
+                <ion-button>
+                    <label for="file">
+                        <ion-icon name="images" slot="icon-only"></ion-icon>
+                    </label>
+                    <input (change)="uploadImage($event)" type="file" style="display: none;" id="file">
+                </ion-button>
+            </ion-buttons>
+        </ion-item>
+        <ion-item class="mt-3">
+            <ion-label class="normal">Photo: </ion-label>
+            <ion-buttons slot="end">
+                <ion-button (click)="openCamera()">
+                    <ion-icon name="camera" slot="icon-only"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+
+        </ion-item>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="addItem()" expand="block" color="dark">Save</ion-button>
+            </ion-col>
+        </ion-row>
+    </div>
+
+    <h3 class="text-center">List Items</h3>
+    <ion-item lines="full" *ngFor="let it of items">
+        <ion-label>{{it.name }} - {{it.description }}</ion-label>
+        <ion-buttons>
+            <ion-button (click)="item = it; enable = true;">
+                <ion-icon name="create-sharp" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button (click)="deleteItem(it)">
+                <ion-icon name="trash-bin" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-item>
+</ion-content>
