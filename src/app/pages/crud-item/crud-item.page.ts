@@ -4,6 +4,7 @@ import { Item } from 'src/app/shared/item';
 import { LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
     selector: 'app-add-item',
@@ -14,12 +15,13 @@ export class CrudItemPage implements OnInit {
 
     item: Item;
     items: Item[] = [];
-    image: string;
+    file: any;
     enable: Boolean = false;
     loading: any;
     toast: any;
 
     constructor(private database: FirestoreService,
+        private storage: StorageService,
         private loadingCtrl: LoadingController,
         private toastController: ToastController,
         private alertController: AlertController) { }
@@ -37,11 +39,13 @@ export class CrudItemPage implements OnInit {
             date: new Date,
             photo: ''
         }
-        this.image = '';
     }
 
-    addItem() {
+    async addItem() {
         this.showLoading('Adding Item...');
+        const res = await this.storage.uploadImage(this.file, 'items/', this.item.name);
+        this.item.photo = res;
+
         this.database.createDoc(this.item, 'items/', this.item.id)
             .then(res => {
                 this.loading.dismiss();
@@ -89,11 +93,12 @@ export class CrudItemPage implements OnInit {
         await alert.present();
     }
 
-    uploadImage(event: any) {
+    async uploadImage(event: any) {
         if (event.target.files && event.target.files[0]) {
+            this.file = event.target.files[0];
             const reader = new FileReader();
             reader.onload = (img => {
-                this.image = img.target.result as string;
+                this.item.photo = img.target.result as string;
             });
             reader.readAsDataURL(event.target.files[0]);
         }
