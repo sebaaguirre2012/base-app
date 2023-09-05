@@ -14,6 +14,7 @@ export class CrudItemPage implements OnInit {
 
     item: Item;
     items: Item[] = [];
+    image: string;
     enable: Boolean = false;
     loading: any;
     toast: any;
@@ -36,6 +37,7 @@ export class CrudItemPage implements OnInit {
             date: new Date,
             photo: ''
         }
+        this.image = '';
     }
 
     addItem() {
@@ -88,7 +90,13 @@ export class CrudItemPage implements OnInit {
     }
 
     uploadImage(event: any) {
-        console.log(event);
+        if (event.target.files && event.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (img => {
+                this.image = img.target.result as string;
+            });
+            reader.readAsDataURL(event.target.files[0]);
+        }
     }
 
     openCamera() {
