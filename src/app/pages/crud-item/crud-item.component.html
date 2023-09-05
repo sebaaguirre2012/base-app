@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Crud Item</ion-title>
+        <ion-title>Crud Item 2</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -13,7 +13,7 @@
 
     <div *ngIf="enable">
         <h3 class="text-center">Add Item</h3>
-
+        <ion-label>Label: {{item.name}}</ion-label>
         <ion-item lines="none">
             <ion-buttons slot="end">
                 <ion-button (click)="addItem()">

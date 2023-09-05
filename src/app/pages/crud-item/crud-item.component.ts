@@ -7,11 +7,11 @@ import { AlertController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
-    selector: 'app-add-item',
-    templateUrl: './crud-item.page.html',
-    styleUrls: ['./crud-item.page.scss'],
+    selector: 'app-crud-item',
+    templateUrl: './crud-item.component.html',
+    styleUrls: ['./crud-item.component.scss'],
 })
-export class CrudItemPage implements OnInit {
+export class CrudItemComponent implements OnInit {
 
     item: Item;
     items: Item[] = [];
@@ -43,16 +43,15 @@ export class CrudItemPage implements OnInit {
 
     async addItem() {
         this.showLoading('Adding Item...');
-        const res = await this.storage.uploadImage(this.file, 'items/', this.item.name);
+        const res = await this.storage.uploadImage(this.file, 'items/', this.item.id);
         this.item.photo = res;
-
         this.database.createDoc(this.item, 'items/', this.item.id)
-            .then(res => {
-                this.loading.dismiss();
-                this.presentToast('Item Added...');
-            }).catch(error => {
-                console.log('Error ->', error);
-            });
+        .then(res => {
+            this.loading.dismiss();
+            this.presentToast('Item Added...');
+        }).catch(error => {
+            console.log('Error ->', error);
+        });
     }
 
     getItems() {

@@ -1,40 +1,21 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CrudItemComponent } from './pages/crud-item/crud-item.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
+import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'registration',
-    loadChildren: () => import('./pages/registration/registration.module').then( m => m.RegistrationPageModule)
-  },
-  {
-    path: 'verify-email',
-    loadChildren: () => import('./pages/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
-  },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
-    path: 'password-reset',
-    loadChildren: () => import('./pages/password-reset/password-reset.module').then( m => m.PasswordResetPageModule)
-  },
-  {
-    path: 'crud-item',
-    loadChildren: () => import('./pages/crud-item/crud-item.module').then( m => m.CrudItemPageModule)
-  },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'crud-item', component: CrudItemComponent },
+  { path: 'registration', component: RegistrationComponent },
+  { path: 'password-reset', component: PasswordResetComponent },
+  { path: 'verify-email', component: VerifyEmailComponent },
+  { path: '', component: LoginComponent },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 
 ];
 

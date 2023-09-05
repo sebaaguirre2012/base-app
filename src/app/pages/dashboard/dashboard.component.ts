@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
-    selector: 'app-verify-email',
-    templateUrl: './verify-email.page.html',
-    styleUrls: ['./verify-email.page.scss'],
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
 })
-export class VerifyEmailPage implements OnInit {
+export class DashboardComponent implements OnInit {
+
     constructor(
         public authService: AuthenticationService
     ) { }

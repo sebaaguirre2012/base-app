@@ -3,10 +3,8 @@ import * as auth from 'firebase/auth';
 import { User } from 'src/app/shared/user';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
-    AngularFirestore,
-    AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+
 @Injectable({
     providedIn: 'root',
 })
