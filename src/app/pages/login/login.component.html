@@ -35,6 +35,11 @@
           <ion-button type="submit" color="danger" (click)="authService.GoogleAuth()" expand="block">Login with Google</ion-button>
       </ion-col>
   </ion-row>
+  <ion-row>
+    <ion-col>
+        <ion-button expand="block" color="dark" [routerLink]="['/register']">Regitro</ion-button>
+    </ion-col>
+</ion-row>
 
 
 </ion-content>

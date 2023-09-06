@@ -9,6 +9,7 @@ import { CrudItemComponent } from './crud-item/crud-item.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
 	declarations: [
@@ -17,7 +18,8 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 		CrudItemComponent,
 		RegistrationComponent,
 		VerifyEmailComponent,
-		PasswordResetComponent
+		PasswordResetComponent,
+		RegisterComponent
 	],
 	imports: [
 		CommonModule,

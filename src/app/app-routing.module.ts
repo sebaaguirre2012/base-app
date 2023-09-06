@@ -6,6 +6,7 @@ import { CrudItemComponent } from './pages/crud-item/crud-item.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { PasswordResetComponent } from './pages/password-reset/password-reset.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '', component: LoginComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 

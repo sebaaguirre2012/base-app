@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Registro de Usuarios</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+
+    <div>
+        <ion-item lines="full">
+            <ion-label position="floating">Nombres</ion-label>
+            <ion-input type="text" [(ngModel)]="usuario.nombres"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Apellidos</ion-label>
+            <ion-input type="text" [(ngModel)]="usuario.apellidos"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Dni</ion-label>
+            <ion-input type="text" [(ngModel)]="usuario.dni"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input type="email" [(ngModel)]="usuario.correo"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Clave</ion-label>
+            <ion-input type="password" [(ngModel)]="usuario.clave"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Reingrese Clave</ion-label>
+            <ion-input type="password" [(ngModel)]="clave"></ion-input>
+        </ion-item>
+        <ion-item class="mt-3">
+            <ion-label *ngIf="!usuario.foto">Foto </ion-label>
+            <img *ngIf="usuario.foto" [src]="usuario.foto" width="50px" height="50px" class="m-3">
+            <ion-buttons slot="end">
+                <ion-button>
+                    <label for="file">
+                        <ion-icon name="images" slot="icon-only"></ion-icon>
+                    </label>
+                    <input (change)="uploadImage($event)" type="file" style="display: none;" id="file">
+                </ion-button>
+            </ion-buttons>
+        </ion-item>
+        <ion-item class="mt-3">
+            <ion-label class="normal">Escanear QR: </ion-label>
+            <ion-buttons slot="end">
+                <ion-button>
+                    <ion-icon name="camera" slot="icon-only"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+
+        </ion-item>
+
+        <ion-button expand="block" class="mt-5" color="dark" (click)="registrar()">Registrase</ion-button>
+        <ion-button expand="block" color="danger" (click)="salir()">Salir</ion-button>
+    </div>
+
+    <!-- <h3 class="text-center">List Items</h3>
+    <ion-item lines="full" *ngFor="let it of items">
+        <ion-label>{{it.name }}</ion-label>
+        <img [src]="it.photo" width="45px" height="45px" class="m-3">
+        <ion-buttons>
+            <ion-button (click)="item = it; enable = true;">
+                <ion-icon name="create-sharp" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button (click)="deleteItem(it)">
+                <ion-icon name="trash-bin" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-item> -->
+</ion-content>

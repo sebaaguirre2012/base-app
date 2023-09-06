@@ -28,6 +28,23 @@ export class AuthenticationService {
         });
     }
 
+    Login(email: string, password: string) {
+        return this.ngFireAuth.signInWithEmailAndPassword(email, password);
+    }
+
+    Register(email: string, password: string) {
+        return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+    }
+
+    Logout() {
+        return this.ngFireAuth.signOut();
+    }
+
+    async GetUid() {
+        const user = await this.ngFireAuth.currentUser;
+        return user ? user.uid : null;
+    }
+
     // Login in with email/password
     SignIn(email: any, password: any) {
         return this.ngFireAuth.signInWithEmailAndPassword(email, password);
@@ -46,13 +63,6 @@ export class AuthenticationService {
             });
         });
     }
-
-    // SendVerificationMail() {
-    //     return this.ngFireAuth.auth.currentUser.sendEmailVerification()
-    //         .then(() => {
-    //             this.router.navigate(['verify-email']);
-    //         })
-    // }
 
     // Recover password
     PasswordRecover(passwordResetEmail: any) {

@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Crud Item 2</ion-title>
+        <ion-title>Crud Item</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -13,7 +13,6 @@
 
     <div *ngIf="enable">
         <h3 class="text-center">Add Item</h3>
-        <ion-label>Label: {{item.name}}</ion-label>
         <ion-item lines="none">
             <ion-buttons slot="end">
                 <ion-button (click)="addItem()">
@@ -35,7 +34,7 @@
         </ion-item>
         <ion-item class="mt-3">
             <ion-label *ngIf="!item.photo">Image: </ion-label>
-            <img *ngIf="item.photo" [src]="item.photo" width="50px" height="50px">
+            <img *ngIf="item.photo" [src]="item.photo" width="50px" height="50px" class="m-3">
             <ion-buttons slot="end">
                 <ion-button>
                     <label for="file">
@@ -59,7 +58,7 @@
     <h3 class="text-center">List Items</h3>
     <ion-item lines="full" *ngFor="let it of items">
         <ion-label>{{it.name }}</ion-label>
-        <img [src]="it.photo" width="45px" height="45px">
+        <img [src]="it.photo" width="45px" height="45px" class="m-3">
         <ion-buttons>
             <ion-button (click)="item = it; enable = true;">
                 <ion-icon name="create-sharp" slot="icon-only"></ion-icon>
