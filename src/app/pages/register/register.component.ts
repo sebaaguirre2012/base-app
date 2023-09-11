@@ -52,8 +52,10 @@ export class RegisterComponent implements OnInit {
 
     async guardarUsuario() {
         this.showLoading('Registrando usuario...');
-        const res = await this.storage.uploadImage(this.file, 'usuarios/', this.usuario.uid);
-        this.usuario.foto = res;
+        if (this.file !== undefined) {
+            const res = await this.storage.uploadImage(this.file, 'usuarios/', this.usuario.uid);
+            this.usuario.foto = res;
+        }
         this.database.createDoc(this.usuario, 'usuarios/', this.usuario.uid)
         .then(res => {
             this.loading.dismiss();

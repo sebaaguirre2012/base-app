@@ -5,6 +5,7 @@ import { LoadingController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
     selector: 'app-crud-item',
@@ -24,7 +25,9 @@ export class CrudItemComponent implements OnInit {
         private storage: StorageService,
         private loadingCtrl: LoadingController,
         private toastController: ToastController,
-        private alertController: AlertController) { }
+        private alertController: AlertController,
+        public photoService: PhotoService
+    ) { }
 
     ngOnInit() {
         this.getItems();
@@ -43,15 +46,16 @@ export class CrudItemComponent implements OnInit {
 
     async addItem() {
         this.showLoading('Adding Item...');
-        const res = await this.storage.uploadImage(this.file, 'items/', this.item.id);
+        // const res = await this.storage.uploadImage(this.file, 'items/', this.item.id);
+        const res = await this.photoService.uploadImageFromBase64(this.item.photo, 'items/', this.item.id);
         this.item.photo = res;
         this.database.createDoc(this.item, 'items/', this.item.id)
-        .then(res => {
-            this.loading.dismiss();
-            this.presentToast('Item Added...');
-        }).catch(error => {
-            console.log('Error ->', error);
-        });
+            .then(res => {
+                this.loading.dismiss();
+                this.presentToast('Item Added...');
+            }).catch(error => {
+                console.log('Error ->', error);
+            });
     }
 
     getItems() {
@@ -92,7 +96,7 @@ export class CrudItemComponent implements OnInit {
         await alert.present();
     }
 
-    async uploadImage(event: any) {
+    async uploadImageFromFS(event: any) {
         if (event.target.files && event.target.files[0]) {
             this.file = event.target.files[0];
             const reader = new FileReader();
@@ -101,10 +105,6 @@ export class CrudItemComponent implements OnInit {
             });
             reader.readAsDataURL(event.target.files[0]);
         }
-    }
-
-    openCamera() {
-        console.log('Camara');
     }
 
     async showLoading(message: string) {
@@ -116,4 +116,11 @@ export class CrudItemComponent implements OnInit {
         this.toast = await this.toastController.create({ message, duration: 3000 });
         await this.toast.present();
     }
+
+    async addPhotoToGallery() {
+        this.item.photo = await this.photoService.takePhoto();
+        console.log(this.item.photo);
+    }
+
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { LoadingController, ToastController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -8,28 +9,50 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
     styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+    loading: any;
+    toast: any;
 
     constructor(
-        public authService: AuthenticationService,
-        public router: Router
+        public authService: AuthService,
+        public router: Router,
+        private loadingCtrl: LoadingController,
+        private toastController: ToastController,
     ) { }
 
     ngOnInit() { }
 
-    logIn(email: any, password: any) {
-        this.authService
-            .SignIn(email.value, password.value)
-            .then((): any => {
+    async onLogin(email, password) {
+        const user = await this.authService.login(email.value, password.value);
+        if (user) {
+            this.redirectUser();
+        }
+    }
 
-                this.router.navigate(['dashboard']);
-                // if (this.authService.isEmailVerified) {
-                // } else {
-                //     window.alert('Email is not verified');
-                //     return false;
-                // }
-            })
-            .catch((error) => {
-                window.alert(error.message);
-            });
+    async onLoginGoogle() {
+        const user = await this.authService.loginGoogle();
+        if (user) {
+            this.redirectUser();
+        }
+    }
+
+    async onRegister(email, password) {
+        const user = await this.authService.register(email.value, password.value);
+        if (user) {
+            this.redirectUser();
+        }
+    }
+
+    redirectUser() {
+        this.router.navigate(['dashboard']);
+    }
+
+    async showLoading(message: string) {
+        this.loading = await this.loadingCtrl.create({ message });
+        this.loading.present();
+    }
+
+    async presentToast(message: string) {
+        this.toast = await this.toastController.create({ message, duration: 3000 });
+        await this.toast.present();
     }
 }

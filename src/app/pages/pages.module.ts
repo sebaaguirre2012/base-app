@@ -6,9 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { CrudItemComponent } from './crud-item/crud-item.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
@@ -16,9 +13,6 @@ import { RegisterComponent } from './register/register.component';
 		LoginComponent,
 		DashboardComponent,
 		CrudItemComponent,
-		RegistrationComponent,
-		VerifyEmailComponent,
-		PasswordResetComponent,
 		RegisterComponent
 	],
 	imports: [

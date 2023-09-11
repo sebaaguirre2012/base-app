@@ -40,14 +40,15 @@
                     <label for="file">
                         <ion-icon name="images" slot="icon-only"></ion-icon>
                     </label>
-                    <input (change)="uploadImage($event)" type="file" style="display: none;" id="file">
+                    <input (change)="uploadImageFromFS($event)" type="file" style="display: none;" id="file">
                 </ion-button>
             </ion-buttons>
         </ion-item>
         <ion-item class="mt-3">
-            <ion-label class="normal">Photo: </ion-label>
+            <ion-label *ngIf="!item.photo" class="normal">Photo: </ion-label>
+            <img *ngIf="item.photo" [src]="item.photo" width="50px" height="50px" class="m-3">
             <ion-buttons slot="end">
-                <ion-button (click)="openCamera()">
+                <ion-button (click)="addPhotoToGallery()">
                     <ion-icon name="camera" slot="icon-only"></ion-icon>
                 </ion-button>
             </ion-buttons>
@@ -68,4 +69,5 @@
             </ion-button>
         </ion-buttons>
     </ion-item>
+
 </ion-content>
