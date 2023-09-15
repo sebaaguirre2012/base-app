@@ -7,13 +7,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { CrudItemComponent } from './crud-item/crud-item.component';
 import { RegisterComponent } from './register/register.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
 	declarations: [
 		LoginComponent,
 		DashboardComponent,
 		CrudItemComponent,
-		RegisterComponent
+		RegisterComponent,
+		ErrorMessageComponent
 	],
 	imports: [
 		CommonModule,
