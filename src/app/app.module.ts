@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { PagesModule } from './pages/pages.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [AppComponent],
@@ -27,6 +28,8 @@ import { PagesModule } from './pages/pages.module';
         AngularFirestoreModule,
         AngularFireStorageModule,
         AngularFireDatabaseModule,
+        FormsModule,
+        ReactiveFormsModule,    
         PagesModule
     ],
     providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
